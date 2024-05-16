@@ -1,4 +1,3 @@
-import { useMutation } from '@apollo/client';
 import { useEffect, useRef, useState } from 'react';
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
@@ -6,12 +5,11 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import countryList from 'react-select-country-list';
 import styled from 'styled-components';
 import { useContext } from '../../../context/Context';
-import Button, { ButtonMode } from '../../shared/Button';
 import Input from '../../shared/Input';
 import Modal from '../../shared/Modal';
 import Selector from '../../shared/Selector';
 import json from '../../shared/variables';
-import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged } from "firebase/auth";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 import { addDoc, collection, doc, getDoc, setDoc } from "firebase/firestore";
 import { auth, db, usersRef } from '../../../firebase';
 import { UserF } from '../../../firebase/dbTypes';
@@ -340,9 +338,10 @@ function FullSignUpForm() {
     try {
       buttonRef.current?.classList.add(pendingClassName);
       if(user.firstName=='' || user.secondName==''){
-        throw Error("ASBNFASFNJKNJKDC");
+        throw Error("Empty name");
       }
-      await addDoc(usersRef, {
+
+      const newUser = {
         ...user,
         affiliation: {
           type: user.affiliation.type,
@@ -352,8 +351,9 @@ function FullSignUpForm() {
         },
         volHours: 0,
         status: "v"
-      });
-      localStorage.setItem("user", JSON.stringify(user));
+      };
+      const docRef = await addDoc(usersRef, newUser);
+      setUserrrr({...newUser, id: docRef.id})
   
       buttonRef.current?.classList.remove(pendingClassName);
       buttonRef.current?.classList.add(successClassName);

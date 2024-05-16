@@ -49,7 +49,7 @@ const Forgot = styled(TempA)`
 
 function SignIn() {
   const navigate = useNavigate();
-  const { setIsLoggedIn, setToken, setUser } = useContext();
+  const { setUser } = useContext();
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [modal, setModal] = useState<boolean>(false);
@@ -75,11 +75,10 @@ function SignIn() {
     const getUserrrrr = async () => {
       const q = query(usersRef, where("email", "==", email));
       const docSnap = await getDocs(q);
-      docSnap.forEach((doc) => {
+      docSnap.forEach((docc) => {
         // doc.data() is never undefined for query doc snapshots
-        console.log(doc.id, " => ", doc.data());
-        // localStorage.setItem('user', JSON.stringify({...doc.data(), id: doc.id}));
-        localStorage.setItem('user', JSON.stringify(doc.data()));
+        console.log(docc.id, " => ", docc.data());
+        setUser({...docc.data(), id: docc.id})
       });
       buttonRef.current?.classList.remove(pendingClassName);
       buttonRef.current?.classList.add(successClassName);

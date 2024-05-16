@@ -32,6 +32,7 @@ const LinksContainer = styled.div`
 
 function Navbar() {
   const navigate = useNavigate();
+  const { user } = useContext();
 
   const NavBarLink = () => navigate('/');
 
@@ -58,7 +59,7 @@ function Navbar() {
         </Link>
       </LinksContainer>
       <LinksContainer>
-        {localStorage.getItem("user") ? (
+        {user ? (
           <>
             <Link onClick={() => navigate('/profile')}>profile</Link>
             <Link onClick={LogOut}>log out</Link>

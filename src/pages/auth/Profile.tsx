@@ -5,7 +5,6 @@ import { useContext } from '../../context/Context';
 import { CameraIcon } from '../assets/icons/CameraIcon';
 import { ProfileIcon } from '../assets/icons/ProfileIcon';
 import Button, { ButtonMode } from '../shared/Button';
-import { collection } from 'firebase/firestore';
 import { db, storage } from '../../firebase';
 import { getBlob, ref, uploadBytes } from 'firebase/storage';
 import "./profile.css";
@@ -106,15 +105,12 @@ function Profile() {
   const loadingRef = useRef<HTMLUListElement | null>(null);
 
   useEffect(() => {
-    const usser = localStorage.getItem("user");
-    console.log(usser)
-    if(!usser){
+    if(!user){
       navigate("/signin");
       return;
     }
-    setUser(() => JSON.parse(usser));
     const getPhoto = async () => {
-      const photoRef = ref(storage, JSON.parse(usser).email);
+      const photoRef = ref(storage, user.email);
       getBlob(photoRef).then(myPhotohehe => {
         var objectURL = URL.createObjectURL(myPhotohehe);
         console.log("SETTTEDDD", objectURL);
