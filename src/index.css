@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Inter";
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+  overflow-x: hidden;
+}
+
+/* Layout */
+
+@media (max-width: 720px) {
+  html {
+    font-size: 40%;
+  }
+}
+@media  (min-width: 720px) and (max-width: 980px) {
+  html {
+    font-size: 45%;
+  }
+}
+@media (max-width: 720px) {
+  html {
+    font-size: 35%;
+  }
+}
