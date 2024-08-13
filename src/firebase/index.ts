@@ -31,5 +31,6 @@ const usersRef = collection(db, 'users')
 const eventsRef = collection(db, 'events')
 const inventoryRef = collection(db, 'inventory')
 const purchasesRef = collection(db, 'purchases')
+const ticketsRef = collection(db, 'tickets')
 
-export { auth, db, usersRef, storage, eventsRef, inventoryRef, purchasesRef };
+export { auth, db, usersRef, storage, eventsRef, inventoryRef, purchasesRef, ticketsRef };

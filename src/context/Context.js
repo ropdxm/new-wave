@@ -21,7 +21,9 @@ function Context({ children }) {
 
         getDocs(q).then(docSnap => {
           docSnap.forEach(docc => {
+
             setUser({...docc.data(), id: docc.id});
+            console.log({...docc.data(), id: docc.id});
           });
         });
         

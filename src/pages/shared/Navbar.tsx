@@ -3,6 +3,8 @@ import Button, { ButtonMode } from './Button';
 import { useContext } from '../../context/Context';
 import Link from './Link';
 import { useNavigate } from 'react-router-dom';
+import { signOut } from 'firebase/auth';
+import { auth } from '../../firebase';
 
 const MainContainer = styled.div`
   height: 8vh;
@@ -38,7 +40,7 @@ function Navbar() {
 
   const LogOut = () => {
     navigate('/');
-    localStorage.removeItem('user');
+    signOut(auth);
   };
 
   return (

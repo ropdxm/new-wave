@@ -85,8 +85,7 @@ function SignIn() {
       const removeSuccessss = async () => {
         await sleep(10);
         buttonRef.current?.classList.remove(successClassName);
-      navigate('/');
-  
+        navigate('/');
       }
       removeSuccessss();
   
